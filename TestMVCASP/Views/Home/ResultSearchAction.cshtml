@@ -1,0 +1,80 @@
+﻿
+@using TestMVCASP.Models
+@model PersonalModel
+
+@{
+	ViewBag.Title = "Contact";
+}
+
+
+<section class="contact">
+	<table class="features-table">
+		<tr>
+			<td class="grey" rowspan="3">
+				<img src="~/Images/person.png" />
+			</td>
+			<td class="grey">Title</td>
+			<td class="grey">@Html.DropDownList("DropDown")</td>
+		</tr>
+		<tr>
+			<td class="grey">First Name</td>
+			<td class="grey">@Html.TextBoxFor(m => m.FirstName, new
+			                                                    {
+				                                                    @readonly = "readonly",
+				                                                    @style = "text-align: center; font-family: Verdana;"
+			                                                    })</td>
+		</tr>
+		<tr>
+			<td class="grey">Last Name</td>
+			<td class="grey">@Html.TextBoxFor(m => m.LastName, new
+			                                                   {
+				                                                   @readonly = "readonly",
+				                                                   @style = "text-align: center; font-family: Verdana;"
+			                                                   })</td>
+		</tr>
+		<tr>
+			<td colspan="3" class="grey">
+				
+				<table class="features-table">
+					<tr>
+						<th> Type</th>
+						<th> Email/Number</th>
+						<th> Note</th>
+					</tr>
+					@foreach (var c in Model.Contacts)
+					{
+						<tr>
+							<td>@c.Type</td>
+							<td>@c.EmailNumber</td>
+							<td>@c.Note</td>
+						</tr>
+					}
+				</table>
+			</td>	
+		</tr>
+		<tr>
+			<td class="grey">Date of birth:      @Html.TextBoxFor(m => m.DayOfBirth, new
+			                                                                         {
+				                                                                         @readonly = "readonly",
+				                                                                         @style = "text-align: center; font-family: Verdana;"
+			                                                                         })</td>
+			<td class="grey">Age:      @Html.TextBoxFor(m => m.Age, new
+			                                                        {
+				                                                        @readonly = "readonly",
+				                                                        @style = "text-align: center; font-family: Verdana;"
+			                                                        })</td>	 
+			@using (Html.BeginForm("ResultSearchAction", "Home"))
+			{
+				<td class="grey">
+					<input class="myButton" type="button" value="Update" onclick="location.href='@Url.Action( "ResultSearchAction", "Home",
+						new InputModel()
+						{
+							InputID = Model.ID
+						}, null)'" />		
+					
+				</td>
+			} 
+		</tr>
+	</table>
+</section>
+

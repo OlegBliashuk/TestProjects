@@ -1,0 +1,902 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FamilyID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="AddressTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="Plus4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="IsPrimary" Type="bit" />
+          <Property Name="IsCurrent" Type="bit" />
+          <Property Name="IsNoMail" Type="bit" />
+          <Property Name="LabelSettingID" Type="tinyint" />
+          <Property Name="Label" Type="nvarchar" MaxLength="255" />
+          <Property Name="HisLabel" Type="nvarchar" MaxLength="255" />
+          <Property Name="HerLabel" Type="nvarchar" MaxLength="255" />
+          <Property Name="SalSettingID" Type="tinyint" />
+          <Property Name="Sal" Type="nvarchar" MaxLength="255" />
+          <Property Name="HisSal" Type="nvarchar" MaxLength="255" />
+          <Property Name="HerSal" Type="nvarchar" MaxLength="255" />
+          <Property Name="StreetNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StreetApt" Type="nvarchar" MaxLength="50" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AddressTypes">
+          <Key>
+            <PropertyRef Name="AddressTypeID" />
+          </Key>
+          <Property Name="AddressTypeID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Families">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+          </Key>
+          <Property Name="FamilyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FiledAs" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsPrivate" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Anniversary" Type="date" />
+          <Property Name="Modified" Type="datetime" />
+          <Property Name="AfterDark" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FamiliesMembers">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="FamilyID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="tinyint" Nullable="false" />
+          <Property Name="RelationID" Type="tinyint" />
+          <Property Name="HisHer" Type="char" MaxLength="3" />
+          <Property Name="IsDefaultFamily" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LabelSettings">
+          <Key>
+            <PropertyRef Name="LabelSettingID" />
+          </Key>
+          <Property Name="LabelSettingID" Type="tinyint" Nullable="false" />
+          <Property Name="LabelSetting" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogData">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableID" Type="smallint" Nullable="false" />
+          <Property Name="LogType" Type="tinyint" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="LogTransactionID" Type="int" Nullable="false" />
+          <Property Name="LogDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogTransactions">
+          <Key>
+            <PropertyRef Name="LogTransactionID" />
+          </Key>
+          <Property Name="LogTransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogTransactionDate" Type="datetime" Nullable="false" />
+          <Property Name="CMS" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="AfterDark" Type="bit" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PhoneNumbers">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+          </Key>
+          <Property Name="PhoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FamilyID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="PhoneTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneExt" Type="varchar" MaxLength="50" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="NoCall" Type="bit" />
+          <Property Name="EmergName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmergRelation" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPrimary" Type="bit" Nullable="false" />
+          <Property Name="PhoneTypeCount" Type="tinyint" Nullable="false" />
+          <Property Name="Modified" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PhoneTypes">
+          <Key>
+            <PropertyRef Name="PhoneTypeID" />
+          </Key>
+          <Property Name="PhoneTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Relations">
+          <Key>
+            <PropertyRef Name="RelationID" />
+          </Key>
+          <Property Name="RelationID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Relation" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalSettings">
+          <Key>
+            <PropertyRef Name="SalSettingID" />
+          </Key>
+          <Property Name="SalSettingID" Type="tinyint" Nullable="false" />
+          <Property Name="SalSetting" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CMS.dbo.Settings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="SettingID" />
+            <PropertyRef Name="Setting" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="SettingID" Type="smallint" Nullable="false" />
+          <Property Name="Setting" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ParentID" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Tables">
+          <Key>
+            <PropertyRef Name="TableID" />
+          </Key>
+          <Property Name="TableID" Type="int" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Addresses_AddressTypes">
+          <End Role="AddressTypes" Type="Self.AddressTypes" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressTypes">
+              <PropertyRef Name="AddressTypeID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_Families">
+          <End Role="Families" Type="Self.Families" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Families">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_LabelSettings">
+          <End Role="LabelSettings" Type="Self.LabelSettings" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabelSettings">
+              <PropertyRef Name="LabelSettingID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="LabelSettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_SalSettings">
+          <End Role="SalSettings" Type="Self.SalSettings" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalSettings">
+              <PropertyRef Name="SalSettingID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="SalSettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FamiliesMembers_Families">
+          <End Role="Families" Type="Self.Families" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamiliesMembers" Type="Self.FamiliesMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Families">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="FamiliesMembers">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FamiliesMembers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamiliesMembers" Type="Self.FamiliesMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="FamiliesMembers">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_Families">
+          <End Role="Families" Type="Self.Families" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Families">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_PhoneTypes">
+          <End Role="PhoneTypes" Type="Self.PhoneTypes" Multiplicity="1" />
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneTypes">
+              <PropertyRef Name="PhoneTypeID" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="PhoneTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CMSModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddressTypes" EntityType="Self.AddressTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Families" EntityType="Self.Families" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FamiliesMembers" EntityType="Self.FamiliesMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabelSettings" EntityType="Self.LabelSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogData" EntityType="Self.LogData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogTransactions" EntityType="Self.LogTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumbers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneTypes" EntityType="Self.PhoneTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relations" EntityType="Self.Relations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalSettings" EntityType="Self.SalSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Settings].[SettingID] AS [SettingID], 
+[Settings].[Setting] AS [Setting], 
+[Settings].[Value] AS [Value], 
+[Settings].[ParentID] AS [ParentID]
+FROM [dbo].[Settings] AS [Settings]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Addresses_AddressTypes" Association="Self.FK_Addresses_AddressTypes">
+            <End Role="AddressTypes" EntitySet="AddressTypes" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_Families" Association="Self.FK_Addresses_Families">
+            <End Role="Families" EntitySet="Families" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_LabelSettings" Association="Self.FK_Addresses_LabelSettings">
+            <End Role="LabelSettings" EntitySet="LabelSettings" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_SalSettings" Association="Self.FK_Addresses_SalSettings">
+            <End Role="SalSettings" EntitySet="SalSettings" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FamiliesMembers_Families" Association="Self.FK_FamiliesMembers_Families">
+            <End Role="Families" EntitySet="Families" />
+            <End Role="FamiliesMembers" EntitySet="FamiliesMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FamiliesMembers_Members" Association="Self.FK_FamiliesMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="FamiliesMembers" EntitySet="FamiliesMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_Families" Association="Self.FK_PhoneNumbers_Families">
+            <End Role="Families" EntitySet="Families" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_Members" Association="Self.FK_PhoneNumbers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_PhoneTypes" Association="Self.FK_PhoneNumbers_PhoneTypes">
+            <End Role="PhoneTypes" EntitySet="PhoneTypes" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="AddressTypeID" Type="Byte" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Plus4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPrimary" Type="Boolean" />
+          <Property Name="IsCurrent" Type="Boolean" />
+          <Property Name="IsNoMail" Type="Boolean" />
+          <Property Name="LabelSettingID" Type="Byte" />
+          <Property Name="Label" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HisLabel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HerLabel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SalSettingID" Type="Byte" />
+          <Property Name="Sal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HisSal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HerSal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StreetNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StreetApt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AddressTypes" Relationship="Self.FK_Addresses_AddressTypes" FromRole="Addresses" ToRole="AddressTypes" />
+          <NavigationProperty Name="Families" Relationship="Self.FK_Addresses_Families" FromRole="Addresses" ToRole="Families" />
+          <NavigationProperty Name="LabelSettings" Relationship="Self.FK_Addresses_LabelSettings" FromRole="Addresses" ToRole="LabelSettings" />
+          <NavigationProperty Name="SalSettings" Relationship="Self.FK_Addresses_SalSettings" FromRole="Addresses" ToRole="SalSettings" />
+        </EntityType>
+        <EntityType Name="AddressTypes">
+          <Key>
+            <PropertyRef Name="AddressTypeID" />
+          </Key>
+          <Property Name="AddressTypeID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_AddressTypes" FromRole="AddressTypes" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Families">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+          </Key>
+          <Property Name="FamilyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FiledAs" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsPrivate" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Anniversary" Type="DateTime" Precision="0" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <Property Name="AfterDark" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_Families" FromRole="Families" ToRole="Addresses" />
+          <NavigationProperty Name="FamiliesMembers" Relationship="Self.FK_FamiliesMembers_Families" FromRole="Families" ToRole="FamiliesMembers" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Self.FK_PhoneNumbers_Families" FromRole="Families" ToRole="PhoneNumbers" />
+        </EntityType>
+        <EntityType Name="FamiliesMembers">
+          <Key>
+            <PropertyRef Name="FamilyID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="FamilyID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="TypeID" Type="Byte" Nullable="false" />
+          <Property Name="RelationID" Type="Byte" />
+          <Property Name="HisHer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="IsDefaultFamily" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Families" Relationship="Self.FK_FamiliesMembers_Families" FromRole="FamiliesMembers" ToRole="Families" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_FamiliesMembers_Members" FromRole="FamiliesMembers" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="LabelSettings">
+          <Key>
+            <PropertyRef Name="LabelSettingID" />
+          </Key>
+          <Property Name="LabelSettingID" Type="Byte" Nullable="false" />
+          <Property Name="LabelSetting" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_LabelSettings" FromRole="LabelSettings" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="LogData">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableID" Type="Int16" Nullable="false" />
+          <Property Name="LogType" Type="Byte" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LogTransactionID" Type="Int32" Nullable="false" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LogTransactions">
+          <Key>
+            <PropertyRef Name="LogTransactionID" />
+          </Key>
+          <Property Name="LogTransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogTransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CMS" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="AfterDark" Type="Boolean" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FamiliesMembers" Relationship="Self.FK_FamiliesMembers_Members" FromRole="Members" ToRole="FamiliesMembers" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Self.FK_PhoneNumbers_Members" FromRole="Members" ToRole="PhoneNumbers" />
+        </EntityType>
+        <EntityType Name="PhoneNumbers">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+          </Key>
+          <Property Name="PhoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FamilyID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="PhoneTypeID" Type="Byte" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneExt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoCall" Type="Boolean" />
+          <Property Name="EmergName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmergRelation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPrimary" Type="Boolean" Nullable="false" />
+          <Property Name="PhoneTypeCount" Type="Byte" Nullable="false" />
+          <Property Name="Modified" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Families" Relationship="Self.FK_PhoneNumbers_Families" FromRole="PhoneNumbers" ToRole="Families" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_PhoneNumbers_Members" FromRole="PhoneNumbers" ToRole="Members" />
+          <NavigationProperty Name="PhoneTypes" Relationship="Self.FK_PhoneNumbers_PhoneTypes" FromRole="PhoneNumbers" ToRole="PhoneTypes" />
+        </EntityType>
+        <EntityType Name="PhoneTypes">
+          <Key>
+            <PropertyRef Name="PhoneTypeID" />
+          </Key>
+          <Property Name="PhoneTypeID" Type="Byte" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Self.FK_PhoneNumbers_PhoneTypes" FromRole="PhoneTypes" ToRole="PhoneNumbers" />
+        </EntityType>
+        <EntityType Name="Relations">
+          <Key>
+            <PropertyRef Name="RelationID" />
+          </Key>
+          <Property Name="RelationID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Relation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalSettings">
+          <Key>
+            <PropertyRef Name="SalSettingID" />
+          </Key>
+          <Property Name="SalSettingID" Type="Byte" Nullable="false" />
+          <Property Name="SalSetting" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_SalSettings" FromRole="SalSettings" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Tables">
+          <Key>
+            <PropertyRef Name="TableID" />
+          </Key>
+          <Property Name="TableID" Type="Int32" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="SettingID" />
+            <PropertyRef Name="Setting" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="SettingID" Type="Int16" Nullable="false" />
+          <Property Name="Setting" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentID" Type="Int16" />
+        </EntityType>
+        <Association Name="FK_Addresses_AddressTypes">
+          <End Role="AddressTypes" Type="Self.AddressTypes" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressTypes">
+              <PropertyRef Name="AddressTypeID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_Families">
+          <End Role="Families" Type="Self.Families" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Families">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_LabelSettings">
+          <End Role="LabelSettings" Type="Self.LabelSettings" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabelSettings">
+              <PropertyRef Name="LabelSettingID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="LabelSettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_SalSettings">
+          <End Role="SalSettings" Type="Self.SalSettings" Multiplicity="0..1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalSettings">
+              <PropertyRef Name="SalSettingID" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="SalSettingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FamiliesMembers_Families">
+          <End Role="Families" Type="Self.Families" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamiliesMembers" Type="Self.FamiliesMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Families">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="FamiliesMembers">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_Families">
+          <End Role="Families" Type="Self.Families" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Families">
+              <PropertyRef Name="FamilyID" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="FamilyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FamiliesMembers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamiliesMembers" Type="Self.FamiliesMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="FamiliesMembers">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_PhoneTypes">
+          <End Role="PhoneTypes" Type="Self.PhoneTypes" Multiplicity="1" />
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhoneTypes">
+              <PropertyRef Name="PhoneTypeID" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="PhoneTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" />
+          <EntitySet Name="AddressTypes" EntityType="Self.AddressTypes" />
+          <EntitySet Name="Families" EntityType="Self.Families" />
+          <EntitySet Name="FamiliesMembers" EntityType="Self.FamiliesMembers" />
+          <EntitySet Name="LabelSettings" EntityType="Self.LabelSettings" />
+          <EntitySet Name="LogData" EntityType="Self.LogData" />
+          <EntitySet Name="LogTransactions" EntityType="Self.LogTransactions" />
+          <EntitySet Name="Members" EntityType="Self.Members" />
+          <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumbers" />
+          <EntitySet Name="PhoneTypes" EntityType="Self.PhoneTypes" />
+          <EntitySet Name="Relations" EntityType="Self.Relations" />
+          <EntitySet Name="SalSettings" EntityType="Self.SalSettings" />
+          <EntitySet Name="Tables" EntityType="Self.Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" />
+          <AssociationSet Name="FK_Addresses_AddressTypes" Association="Self.FK_Addresses_AddressTypes">
+            <End Role="AddressTypes" EntitySet="AddressTypes" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_Families" Association="Self.FK_Addresses_Families">
+            <End Role="Families" EntitySet="Families" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_LabelSettings" Association="Self.FK_Addresses_LabelSettings">
+            <End Role="LabelSettings" EntitySet="LabelSettings" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_SalSettings" Association="Self.FK_Addresses_SalSettings">
+            <End Role="SalSettings" EntitySet="SalSettings" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FamiliesMembers_Families" Association="Self.FK_FamiliesMembers_Families">
+            <End Role="Families" EntitySet="Families" />
+            <End Role="FamiliesMembers" EntitySet="FamiliesMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_Families" Association="Self.FK_PhoneNumbers_Families">
+            <End Role="Families" EntitySet="Families" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FamiliesMembers_Members" Association="Self.FK_FamiliesMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="FamiliesMembers" EntitySet="FamiliesMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_Members" Association="Self.FK_PhoneNumbers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_PhoneTypes" Association="Self.FK_PhoneNumbers_PhoneTypes">
+            <End Role="PhoneTypes" EntitySet="PhoneTypes" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CMSModelStoreContainer" CdmEntityContainer="CMSEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="CMSModel.Addresses">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Plus4" ColumnName="Plus4" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="IsNoMail" ColumnName="IsNoMail" />
+                <ScalarProperty Name="LabelSettingID" ColumnName="LabelSettingID" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="HisLabel" ColumnName="HisLabel" />
+                <ScalarProperty Name="HerLabel" ColumnName="HerLabel" />
+                <ScalarProperty Name="SalSettingID" ColumnName="SalSettingID" />
+                <ScalarProperty Name="Sal" ColumnName="Sal" />
+                <ScalarProperty Name="HisSal" ColumnName="HisSal" />
+                <ScalarProperty Name="HerSal" ColumnName="HerSal" />
+                <ScalarProperty Name="StreetNo" ColumnName="StreetNo" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="StreetApt" ColumnName="StreetApt" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressTypes">
+            <EntityTypeMapping TypeName="CMSModel.AddressTypes">
+              <MappingFragment StoreEntitySet="AddressTypes">
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Families">
+            <EntityTypeMapping TypeName="CMSModel.Families">
+              <MappingFragment StoreEntitySet="Families">
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="FiledAs" ColumnName="FiledAs" />
+                <ScalarProperty Name="IsPrivate" ColumnName="IsPrivate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Anniversary" ColumnName="Anniversary" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="AfterDark" ColumnName="AfterDark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FamiliesMembers">
+            <EntityTypeMapping TypeName="CMSModel.FamiliesMembers">
+              <MappingFragment StoreEntitySet="FamiliesMembers">
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="RelationID" ColumnName="RelationID" />
+                <ScalarProperty Name="HisHer" ColumnName="HisHer" />
+                <ScalarProperty Name="IsDefaultFamily" ColumnName="IsDefaultFamily" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabelSettings">
+            <EntityTypeMapping TypeName="CMSModel.LabelSettings">
+              <MappingFragment StoreEntitySet="LabelSettings">
+                <ScalarProperty Name="LabelSettingID" ColumnName="LabelSettingID" />
+                <ScalarProperty Name="LabelSetting" ColumnName="LabelSetting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogData">
+            <EntityTypeMapping TypeName="CMSModel.LogData">
+              <MappingFragment StoreEntitySet="LogData">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LogTransactionID" ColumnName="LogTransactionID" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogTransactions">
+            <EntityTypeMapping TypeName="CMSModel.LogTransactions">
+              <MappingFragment StoreEntitySet="LogTransactions">
+                <ScalarProperty Name="LogTransactionID" ColumnName="LogTransactionID" />
+                <ScalarProperty Name="LogTransactionDate" ColumnName="LogTransactionDate" />
+                <ScalarProperty Name="CMS" ColumnName="CMS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="CMSModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="AfterDark" ColumnName="AfterDark" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneNumbers">
+            <EntityTypeMapping TypeName="CMSModel.PhoneNumbers">
+              <MappingFragment StoreEntitySet="PhoneNumbers">
+                <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+                <ScalarProperty Name="FamilyID" ColumnName="FamilyID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PhoneTypeID" ColumnName="PhoneTypeID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneExt" ColumnName="PhoneExt" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="NoCall" ColumnName="NoCall" />
+                <ScalarProperty Name="EmergName" ColumnName="EmergName" />
+                <ScalarProperty Name="EmergRelation" ColumnName="EmergRelation" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="PhoneTypeCount" ColumnName="PhoneTypeCount" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneTypes">
+            <EntityTypeMapping TypeName="CMSModel.PhoneTypes">
+              <MappingFragment StoreEntitySet="PhoneTypes">
+                <ScalarProperty Name="PhoneTypeID" ColumnName="PhoneTypeID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relations">
+            <EntityTypeMapping TypeName="CMSModel.Relations">
+              <MappingFragment StoreEntitySet="Relations">
+                <ScalarProperty Name="RelationID" ColumnName="RelationID" />
+                <ScalarProperty Name="Relation" ColumnName="Relation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalSettings">
+            <EntityTypeMapping TypeName="CMSModel.SalSettings">
+              <MappingFragment StoreEntitySet="SalSettings">
+                <ScalarProperty Name="SalSettingID" ColumnName="SalSettingID" />
+                <ScalarProperty Name="SalSetting" ColumnName="SalSetting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="CMSModel.Tables">
+              <MappingFragment StoreEntitySet="Tables">
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="CMSModel.Settings">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+                <ScalarProperty Name="Setting" ColumnName="Setting" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

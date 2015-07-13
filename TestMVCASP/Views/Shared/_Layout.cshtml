@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Search</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+      </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">Search some person by ID:</p>
+                </div>
+                <div class="float-right">
+                  <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Enter new ID", "Index", "Home")</li>
+                           </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body" >
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper clear-fix" style="min-height: 300px;">
+                @RenderBody()
+            </section>
+        </div>
+        <footer >
+            <div class="content-wrapper" >
+                <div class="float-left">
+                    <p>Test task for ProgForce</p>
+                </div>
+            </div>
+        </footer>  
+    </body>
+</html>

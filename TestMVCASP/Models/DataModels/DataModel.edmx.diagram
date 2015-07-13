@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edf2d3f913914d60b993f9d2ee4d2bde" Name="Diagram1">
+        <EntityTypeShape EntityType="CMSModel.Addresses" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.AddressTypes" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Families" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.FamiliesMembers" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.LabelSettings" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.LogData" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.LogTransactions" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Members" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PhoneNumbers" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.PhoneTypes" Width="1.5" PointX="3.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Relations" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.SalSettings" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Tables" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CMSModel.Settings" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="CMSModel.FK_Addresses_AddressTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Addresses_Families" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Addresses_LabelSettings" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_Addresses_SalSettings" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_FamiliesMembers_Families" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PhoneNumbers_Families" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_FamiliesMembers_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PhoneNumbers_Members" ManuallyRouted="false" />
+        <AssociationConnector Association="CMSModel.FK_PhoneNumbers_PhoneTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

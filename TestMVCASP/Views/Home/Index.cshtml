@@ -1,0 +1,36 @@
+﻿@model TestMVCASP.Models.InputModel
+
+@{
+	ViewBag.Title = "Home Page";
+}
+<section class="contact"  >
+<header >
+	<h3 style="align-content: center; margin-top: 90px;">Please enter the ID of preson:</h3>
+</header>
+	
+	@* ReSharper disable once Html.Obsolete *@
+@using (Html.BeginForm("ResultSearchAction", "Home"))
+{
+	<table align="center" cellpadding ="10" style="margin-top: 100px;">
+		<tr>
+			<th>
+				@Html.TextBoxFor(m=>m.InputID, new { @style = "width: 450px;", onkeydown="return ValidateNumber(event);" } )
+				@Html.ValidationMessageFor(m=>m.InputID)		  
+			</th>
+			<th>
+				<input class="myButton" type="submit" value="Search" />
+			</th>
+		</tr>
+	</table>
+} 
+	<script type="text/javascript">
+		function ValidateNumber(e) {
+			var evt = (e) ? e : window.event;
+			var charCode = (evt.keyCode) ? evt.keyCode : evt.which;
+			if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+				return false;
+			}
+			return true;
+		};</script>
+
+		</section>
